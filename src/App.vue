@@ -5,10 +5,11 @@ import { computed, onMounted, ref } from 'vue';
 
 export default {
 	setup() {
+    let apiKey = import.meta.env.VITE_SHEETS_KEY;
     let lines = ref([]);
 		const getLines = function () {
       fetch(
-				"https://sheets.googleapis.com/v4/spreadsheets/1DucJ1Ul40FfM3xfU1NfTWwHXiVdqohqHrqBb21WAgRA/values/Sheet1?alt=json&key=AIzaSyB-VVAibjmPalAeujt83-BoGr3NX6RZoVQ",
+				"https://sheets.googleapis.com/v4/spreadsheets/1DucJ1Ul40FfM3xfU1NfTWwHXiVdqohqHrqBb21WAgRA/values/Sheet1?alt=json&key=" + apiKey,
 				{
 					method: "GET",
 				}
