@@ -1,33 +1,63 @@
 <script>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from "vue";
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 
 export default {
 	setup() {
-    let apiKey = import.meta.env.VITE_SHEETS_KEY;
-    let lines = ref([]);
+		let apiKey = import.meta.env.VITE_SHEETS_KEY;
+		let lines = ref([]);
 		const getLines = function () {
-      fetch(
-				"https://sheets.googleapis.com/v4/spreadsheets/1DucJ1Ul40FfM3xfU1NfTWwHXiVdqohqHrqBb21WAgRA/values/Sheet1?alt=json&key=" + apiKey,
+			fetch(
+				"https://sheets.googleapis.com/v4/spreadsheets/1DucJ1Ul40FfM3xfU1NfTWwHXiVdqohqHrqBb21WAgRA/values/Sheet1?alt=json&key=" +
+					apiKey,
 				{
 					method: "GET",
 				}
 			)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        lines.value = data.values;
-        // remove column headers by removing first item in array
-        lines.value.shift();
-      })
-    }
-    onMounted(() => {
-      getLines()
-    })
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data);
+					lines.value = data.values;
+					// remove column headers by removing first item in array
+					lines.value.shift();
+				});
+		};
+		onMounted(() => {
+			getLines();
+		});
+    
+    const getRandom = function (theLength) {
+      return Math.floor(Math.random() * theLength);
+    };
+
+		let randomFive = computed(() => {
+			let fives = lines.value.filter((line) => {
+        return line[1] == "5";
+			});
+      // console.log('fives', fives);
+			let randomOne = fives[getRandom(fives.length)];
+			let randomTwo = fives[getRandom(fives.length)];
+			if (randomOne === randomTwo) {
+				randomTwo = fives[getRandom(fives.length)];
+				return [randomOne, randomTwo];
+			} else {
+				return [randomOne, randomTwo];
+			}
+		});
+		let randomSeven = computed(() => {
+			let sevens = lines.value.filter((line) => {
+				return line[1] == "7";
+			});
+			return sevens[getRandom(sevens.length)];
+		});
+
 
 		return {
-			lines
+			lines,
+			randomFive,
+			randomSeven,
+      // getRandom
 		};
 	},
 };
@@ -35,10 +65,19 @@ export default {
 
 <template>
 	<div v-if="lines">
-    <h2>lines</h2>
-		<ul v-for="(line, index) in lines" :key="index">
-      <li>{{ line[0] }}</li>
-    </ul>
+		<h2>lines</h2>
+		<p v-if="randomFive[0]">
+			{{ randomFive[0][0] }}
+		</p>
+		<p v-if="randomSeven">
+			{{ randomSeven[0] }}
+		</p>
+		<p v-if="randomFive[1]">
+			{{ randomFive[1][0] }}
+		</p>
+		<!-- <ul v-for="(line, index) in lines" :key="index">
+			<li>{{ line[0] }}</li>
+		</ul> -->
 	</div>
 </template>
 
