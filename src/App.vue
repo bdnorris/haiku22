@@ -26,6 +26,8 @@ export default {
 		onMounted(() => {
 			getLines();
 		});
+
+    let seed = ref(0);
     
     const getRandom = function (theLength) {
       return Math.floor(Math.random() * theLength);
@@ -38,6 +40,7 @@ export default {
       // console.log('fives', fives);
 			let randomOne = fives[getRandom(fives.length)];
 			let randomTwo = fives[getRandom(fives.length)];
+      let aThingToForceRecompute = seed.value
 			if (randomOne === randomTwo) {
 				randomTwo = fives[getRandom(fives.length)];
 				return [randomOne, randomTwo];
@@ -49,6 +52,7 @@ export default {
 			let sevens = lines.value.filter((line) => {
 				return line[1] == "7";
 			});
+      let aThingToForceRecompute = seed.value
 			return sevens[getRandom(sevens.length)];
 		});
 
@@ -57,6 +61,7 @@ export default {
 			lines,
 			randomFive,
 			randomSeven,
+      seed
       // getRandom
 		};
 	},
@@ -78,6 +83,7 @@ export default {
 		<!-- <ul v-for="(line, index) in lines" :key="index">
 			<li>{{ line[0] }}</li>
 		</ul> -->
+    <button @click="seed++">Recompute</button>
 	</div>
 </template>
 
