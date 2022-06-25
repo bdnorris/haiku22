@@ -70,7 +70,6 @@ export default {
 
 <template>
 	<div v-if="lines">
-		<h2>lines</h2>
 		<p v-if="randomFive[0]">
 			{{ randomFive[0][0] }}
 		</p>
