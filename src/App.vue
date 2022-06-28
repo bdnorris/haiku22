@@ -17,7 +17,7 @@ export default {
 			)
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
+					console.log('data', data);
 					lines.value = data.values;
 					// remove column headers by removing first item in array
 					lines.value.shift();
@@ -27,42 +27,60 @@ export default {
 			getLines();
 		});
 
-    let seed = ref(0);
-    
-    const getRandom = function (theLength) {
-      return Math.floor(Math.random() * theLength);
-    };
+		let seedFiveFirst = ref(0);
+		let seedFiveSecond = ref(0);
+		let seedSeven = ref(0);
 
-		let randomFive = computed(() => {
-			let fives = lines.value.filter((line) => {
-        return line[1] == "5";
-			});
-      // console.log('fives', fives);
-			let randomOne = fives[getRandom(fives.length)];
-			let randomTwo = fives[getRandom(fives.length)];
-      let aThingToForceRecompute = seed.value
-			if (randomOne === randomTwo) {
-				randomTwo = fives[getRandom(fives.length)];
-				return [randomOne, randomTwo];
-			} else {
-				return [randomOne, randomTwo];
-			}
+		const getRandom = function (theLength) {
+			return Math.floor(Math.random() * theLength);
+		};
+
+		let randomFiveFirst = computed(() => {
+      let fives = lines.value.filter(
+        (line) => line[1] === "5"
+      )
+      console.log('asdf', fives)
+			let aThingToForceRecompute = seedFiveFirst.value;
+			return fives[getRandom(fives.length)];
+		});
+		let randomFiveSecond = computed(() => {
+      let fives = lines.value.filter(
+        (line) => line[1] === "5"
+      )
+			let aThingToForceRecompute = seedFiveSecond.value;
+			return fives[getRandom(fives.length)];
 		});
 		let randomSeven = computed(() => {
-			let sevens = lines.value.filter((line) => {
-				return line[1] == "7";
-			});
-      let aThingToForceRecompute = seed.value
+      let sevens = lines.value.filter(
+        (line) => line[1] === "7"
+      )
+			let aThingToForceRecompute = seedSeven.value;
 			return sevens[getRandom(sevens.length)];
 		});
-
+		const updateLine = function (syls, index) {
+			if (syls === 5 && index === 0) {
+				seedFiveFirst.value++;
+			}
+      if (syls === 5 && index === 1) {
+        seedFiveSecond.value++;
+      }
+			if (syls === 7) {
+				seedSeven.value++;
+			}
+		};
+		const updateAll = function () {
+			seedFiveFirst.value++;
+			seedFiveSecond.value++;
+			seedSeven.value++;
+		};
 
 		return {
 			lines,
-			randomFive,
+			randomFiveFirst,
+			randomFiveSecond,
 			randomSeven,
-      seed
-      // getRandom
+			updateLine,
+			updateAll,
 		};
 	},
 };
@@ -70,19 +88,22 @@ export default {
 
 <template>
 	<div v-if="lines">
-		<p v-if="randomFive[0]">
-			{{ randomFive[0][0] }}
+		<p>
+			<button v-if="randomFiveFirst[0]" @click="updateLine(5, 0)" type="done">
+				{{ randomFiveFirst[0] }}
+			</button>
 		</p>
-		<p v-if="randomSeven">
-			{{ randomSeven[0] }}
+		<p>
+			<button v-if="randomSeven" @click="updateLine(7, 0)" type="done">
+				{{ randomSeven[0] }}
+			</button>
 		</p>
-		<p v-if="randomFive[1]">
-			{{ randomFive[1][0] }}
+		<p>
+			<button v-if="randomFiveSecond[1]" @click="updateLine(5, 1)" type="done">
+				{{ randomFiveSecond[0] }}
+			</button>
 		</p>
-		<!-- <ul v-for="(line, index) in lines" :key="index">
-			<li>{{ line[0] }}</li>
-		</ul> -->
-    <button @click="seed++">Recompute</button>
+		<button @click="updateAll">Recompute</button>
 	</div>
 </template>
 
