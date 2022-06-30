@@ -114,6 +114,22 @@ export default {
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 	color: #2c3e50;
-	margin-top: 60px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-image: linear-gradient(
+  145deg,
+  hsl(290deg 72% 58%) 0%,
+  hsl(285deg 63% 53%) 21%,
+  hsl(280deg 61% 48%) 30%,
+  hsl(274deg 65% 42%) 39%,
+  hsl(268deg 71% 37%) 46%,
+  hsl(261deg 67% 33%) 54%,
+  hsl(253deg 57% 28%) 61%,
+  hsl(247deg 49% 22%) 69%,
+  hsl(244deg 38% 16%) 79%,
+  hsl(248deg 17% 9%) 100%
+);
 }
 </style>
