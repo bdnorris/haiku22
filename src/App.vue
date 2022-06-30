@@ -7,8 +7,8 @@ export default {
 	setup() {
 		let apiKey = import.meta.env.VITE_SHEETS_KEY;
 		let lines = ref([]);
-		const getLines = function () {
-			fetch(
+		const getLines = async function () {
+			await fetch(
 				"https://sheets.googleapis.com/v4/spreadsheets/1DucJ1Ul40FfM3xfU1NfTWwHXiVdqohqHrqBb21WAgRA/values/Sheet1?alt=json&key=" +
 					apiKey,
 				{
@@ -23,8 +23,8 @@ export default {
 					lines.value.shift();
 				});
 		};
-		onMounted(() => {
-			getLines();
+		onMounted( async () => {
+			await getLines();
 		});
 
 		let seedFiveFirst = ref(0);
@@ -36,26 +36,41 @@ export default {
 		};
 
 		let randomFiveFirst = computed(() => {
-      let fives = lines.value.filter(
-        (line) => line[1] === "5"
-      )
-      console.log('asdf', fives)
-			let aThingToForceRecompute = seedFiveFirst.value;
-			return fives[getRandom(fives.length)];
+			if (lines.value) {
+				let fives = lines.value.filter(
+					(line) => line[1] === "5"
+				)
+				console.log('asdf', fives)
+				let aThingToForceRecompute = seedFiveFirst.value;
+				return fives[getRandom(fives.length)];
+			}
+			else {
+				return []
+			}
 		});
 		let randomFiveSecond = computed(() => {
-      let fives = lines.value.filter(
-        (line) => line[1] === "5"
-      )
-			let aThingToForceRecompute = seedFiveSecond.value;
-			return fives[getRandom(fives.length)];
+			if (lines.value) {
+				let fives = lines.value.filter(
+					(line) => line[1] === "5"
+				)
+				let aThingToForceRecompute = seedFiveSecond.value;
+				return fives[getRandom(fives.length)];
+			}
+			else {
+				return []
+			}
 		});
 		let randomSeven = computed(() => {
-      let sevens = lines.value.filter(
-        (line) => line[1] === "7"
-      )
-			let aThingToForceRecompute = seedSeven.value;
-			return sevens[getRandom(sevens.length)];
+			if (lines.value) {
+				let sevens = lines.value.filter(
+					(line) => line[1] === "7"
+				)
+				let aThingToForceRecompute = seedSeven.value;
+				return sevens[getRandom(sevens.length)];
+			}
+			else {
+				return []
+			}
 		});
 		const updateLine = function (syls, index) {
 			if (syls === 5 && index === 0) {
@@ -89,7 +104,7 @@ export default {
 <template>
 	<div v-if="lines">
 		<p>
-			<button v-if="randomFiveFirst[0]" @click="updateLine(5, 0)" type="done">
+			<button v-if="randomFiveFirst" @click="updateLine(5, 0)" type="done">
 				{{ randomFiveFirst[0] }}
 			</button>
 		</p>
@@ -99,21 +114,18 @@ export default {
 			</button>
 		</p>
 		<p>
-			<button v-if="randomFiveSecond[1]" @click="updateLine(5, 1)" type="done">
+			<button v-if="randomFiveSecond" @click="updateLine(5, 1)" type="done">
 				{{ randomFiveSecond[0] }}
 			</button>
 		</p>
-		<button @click="updateAll">Recompute</button>
+		<button @click="updateAll" class="button">Recompute</button>
 	</div>
 </template>
 
 <style>
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
+body {
+	width: 100vw;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
