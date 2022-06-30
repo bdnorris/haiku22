@@ -142,6 +142,32 @@ body {
   hsl(247deg 49% 22%) 69%,
   hsl(244deg 38% 16%) 79%,
   hsl(248deg 17% 9%) 100%
-);
+	);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+#app {
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	text-align: center;
+	color: #2c3e50;
+}
+button {
+	background-color: transparent;
+	color: #fff;
+	font-size: 2em;
+	border: none;
+	padding: 0.5em 1em;
+	border-radius: none;
+	cursor: pointer;
+	box-shadow: none;
+	font-family: inherit;
+}
+button:hover {
+	text-decoration: underline;
+	text-decoration-style: wavy;
+	text-decoration-offset: 0.2em;
+}
+button.button {
+	background-color: #2c3e50;
 }
 </style>
