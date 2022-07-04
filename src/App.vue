@@ -1,5 +1,6 @@
 <script>
 import { computed, onMounted, ref } from "vue";
+import Cube from './components/Cube.vue'
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 
@@ -96,7 +97,11 @@ export default {
 			randomSeven,
 			updateLine,
 			updateAll,
+			Cube,
 		};
+	},
+	components: {
+		Cube,
 	},
 };
 </script>
@@ -118,7 +123,9 @@ export default {
 				{{ randomFiveSecond[0] }}
 			</button>
 		</p>
-		<button @click="updateAll" class="button">Recompute</button>
+		<button @click="updateAll" class="button">
+			<Cube />
+		</button>
 	</div>
 </template>
 
