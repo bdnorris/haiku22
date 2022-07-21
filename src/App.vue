@@ -2,107 +2,97 @@
 import { computed, onMounted, ref } from "vue";
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import Vortex from './components/Vortex.vue';
 
 export default {
-	setup() {
-		let apiKey = import.meta.env.VITE_SHEETS_KEY;
-		let lines = ref([]);
-		const getLines = async function () {
-			await fetch(
-				"https://sheets.googleapis.com/v4/spreadsheets/1DucJ1Ul40FfM3xfU1NfTWwHXiVdqohqHrqBb21WAgRA/values/Sheet1?alt=json&key=" +
-					apiKey,
-				{
-					method: "GET",
-				}
-			)
-				.then((res) => res.json())
-				.then((data) => {
-					console.log('data', data);
-					lines.value = data.values;
-					// remove column headers by removing first item in array
-					lines.value.shift();
-				});
-		};
-		onMounted( async () => {
-			await getLines();
-		});
-
-		let seedFiveFirst = ref(0);
-		let seedFiveSecond = ref(0);
-		let seedSeven = ref(0);
-
-		const getRandom = function (theLength) {
-			return Math.floor(Math.random() * theLength);
-		};
-
-		let randomFiveFirst = computed(() => {
-			if (lines.value) {
-				let fives = lines.value.filter(
-					(line) => line[1] === "5"
-				)
-				console.log('asdf', fives)
-				let aThingToForceRecompute = seedFiveFirst.value;
-				return fives[getRandom(fives.length)];
-			}
-			else {
-				return []
-			}
-		});
-		let randomFiveSecond = computed(() => {
-			if (lines.value) {
-				let fives = lines.value.filter(
-					(line) => line[1] === "5"
-				)
-				let aThingToForceRecompute = seedFiveSecond.value;
-				return fives[getRandom(fives.length)];
-			}
-			else {
-				return []
-			}
-		});
-		let randomSeven = computed(() => {
-			if (lines.value) {
-				let sevens = lines.value.filter(
-					(line) => line[1] === "7"
-				)
-				let aThingToForceRecompute = seedSeven.value;
-				return sevens[getRandom(sevens.length)];
-			}
-			else {
-				return []
-			}
-		});
-		const updateLine = function (syls, index) {
-			if (syls === 5 && index === 0) {
-				seedFiveFirst.value++;
-			}
-      if (syls === 5 && index === 1) {
-        seedFiveSecond.value++;
-      }
-			if (syls === 7) {
-				seedSeven.value++;
-			}
-		};
-		const updateAll = function () {
-			seedFiveFirst.value++;
-			seedFiveSecond.value++;
-			seedSeven.value++;
-		};
-
-		return {
-			lines,
-			randomFiveFirst,
-			randomFiveSecond,
-			randomSeven,
-			updateLine,
-			updateAll,
-		};
-	},
+    setup() {
+        let apiKey = import.meta.env.VITE_SHEETS_KEY;
+        let lines = ref([]);
+        const getLines = async function () {
+            await fetch("https://sheets.googleapis.com/v4/spreadsheets/1DucJ1Ul40FfM3xfU1NfTWwHXiVdqohqHrqBb21WAgRA/values/Sheet1?alt=json&key=" +
+                apiKey, {
+                method: "GET",
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                console.log("data", data);
+                lines.value = data.values;
+                // remove column headers by removing first item in array
+                lines.value.shift();
+            });
+        };
+        onMounted(async () => {
+            await getLines();
+        });
+        let seedFiveFirst = ref(0);
+        let seedFiveSecond = ref(0);
+        let seedSeven = ref(0);
+        const getRandom = function (theLength) {
+            return Math.floor(Math.random() * theLength);
+        };
+        let randomFiveFirst = computed(() => {
+            if (lines.value) {
+                let fives = lines.value.filter((line) => line[1] === "5");
+                console.log("asdf", fives);
+                let aThingToForceRecompute = seedFiveFirst.value;
+                return fives[getRandom(fives.length)];
+            }
+            else {
+                return [];
+            }
+        });
+        let randomFiveSecond = computed(() => {
+            if (lines.value) {
+                let fives = lines.value.filter((line) => line[1] === "5");
+                let aThingToForceRecompute = seedFiveSecond.value;
+                return fives[getRandom(fives.length)];
+            }
+            else {
+                return [];
+            }
+        });
+        let randomSeven = computed(() => {
+            if (lines.value) {
+                let sevens = lines.value.filter((line) => line[1] === "7");
+                let aThingToForceRecompute = seedSeven.value;
+                return sevens[getRandom(sevens.length)];
+            }
+            else {
+                return [];
+            }
+        });
+        const updateLine = function (syls, index) {
+            if (syls === 5 && index === 0) {
+                seedFiveFirst.value++;
+            }
+            if (syls === 5 && index === 1) {
+                seedFiveSecond.value++;
+            }
+            if (syls === 7) {
+                seedSeven.value++;
+            }
+        };
+        const updateAll = function () {
+            seedFiveFirst.value++;
+            seedFiveSecond.value++;
+            seedSeven.value++;
+        };
+        return {
+            lines,
+            randomFiveFirst,
+            randomFiveSecond,
+            randomSeven,
+            updateLine,
+            updateAll,
+        };
+    },
+    components: { Vortex }
 };
 </script>
 
 <template>
-	<div v-if="lines">
+	<Vortex />
+	<div v-if="lines" class="lines">
 		<p>
 			<button v-if="randomFiveFirst" @click="updateLine(5, 0)" type="done">
 				{{ randomFiveFirst[0] }}
@@ -130,26 +120,27 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-image: linear-gradient(
-  145deg,
-  hsl(290deg 72% 58%) 0%,
-  hsl(285deg 63% 53%) 21%,
-  hsl(280deg 61% 48%) 30%,
-  hsl(274deg 65% 42%) 39%,
-  hsl(268deg 71% 37%) 46%,
-  hsl(261deg 67% 33%) 54%,
-  hsl(253deg 57% 28%) 61%,
-  hsl(247deg 49% 22%) 69%,
-  hsl(244deg 38% 16%) 79%,
-  hsl(248deg 17% 9%) 100%
-	);
+	/* background-image: url('/vvvortex.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center; */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: #06083D;
+	position: relative;
 }
 #app {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	text-align: center;
 	color: #2c3e50;
+}
+.lines {
+		position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 2;
 }
 button {
 	background-color: transparent;
