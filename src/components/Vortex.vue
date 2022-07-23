@@ -31,7 +31,7 @@
 					stroke-dasharray="32 19"
 					stroke-dashoffset="25"
 					transform="rotate(217, 400, 400)"
-					opacity="0.05"
+					opacity="1"
 				></circle>
 			</g>
 			<g class="spin">
@@ -43,7 +43,7 @@
 					stroke-dasharray="44 40"
 					stroke-dashoffset="25"
 					transform="rotate(196, 400, 400)"
-					opacity="0.10"
+					opacity="0.95"
 				></circle>
 			</g>
 			<g class="spin">
@@ -55,7 +55,7 @@
 					stroke-dasharray="48 52"
 					stroke-dashoffset="25"
 					transform="rotate(54, 400, 400)"
-					opacity="0.14"
+					opacity="0.91"
 				></circle>
 			</g>
 			<g class="spin">
@@ -67,7 +67,7 @@
 					stroke-dasharray="21 23"
 					stroke-dashoffset="25"
 					transform="rotate(298, 400, 400)"
-					opacity="0.19"
+					opacity="0.86"
 				></circle>
 			</g>
 			<g class="spin">
@@ -79,7 +79,7 @@
 					stroke-dasharray="11 54"
 					stroke-dashoffset="25"
 					transform="rotate(214, 400, 400)"
-					opacity="0.23"
+					opacity="0.82"
 				></circle>
 			</g>
 			<g class="spin">
@@ -91,7 +91,7 @@
 					stroke-dasharray="48 12"
 					stroke-dashoffset="25"
 					transform="rotate(341, 400, 400)"
-					opacity="0.28"
+					opacity="0.77"
 				></circle>
 			</g>
 			<g class="spin">
@@ -103,7 +103,7 @@
 					stroke-dasharray="36 34"
 					stroke-dashoffset="25"
 					transform="rotate(180, 400, 400)"
-					opacity="0.32"
+					opacity="0.73"
 				></circle>
 			</g>
 			<g class="spin">
@@ -115,7 +115,7 @@
 					stroke-dasharray="37 11"
 					stroke-dashoffset="25"
 					transform="rotate(183, 400, 400)"
-					opacity="0.37"
+					opacity="0.68"
 				></circle>
 			</g>
 			<g class="spin">
@@ -127,7 +127,7 @@
 					stroke-dasharray="10 27"
 					stroke-dashoffset="25"
 					transform="rotate(256, 400, 400)"
-					opacity="0.41"
+					opacity="0.64"
 				></circle>
 			</g>
 			<g class="spin">
@@ -139,7 +139,7 @@
 					stroke-dasharray="35 39"
 					stroke-dashoffset="25"
 					transform="rotate(278, 400, 400)"
-					opacity="0.46"
+					opacity="0.59"
 				></circle>
 			</g>
 			<g class="spin">
@@ -151,7 +151,7 @@
 					stroke-dasharray="21 37"
 					stroke-dashoffset="25"
 					transform="rotate(312, 400, 400)"
-					opacity="0.50"
+					opacity="0.55"
 				></circle>
 			</g>
 			<g class="spin">
@@ -163,7 +163,7 @@
 					stroke-dasharray="16 15"
 					stroke-dashoffset="25"
 					transform="rotate(138, 400, 400)"
-					opacity="0.55"
+					opacity="0.50"
 				></circle>
 			</g>
 			<g class="spin">
@@ -175,7 +175,7 @@
 					stroke-dasharray="24 15"
 					stroke-dashoffset="25"
 					transform="rotate(321, 400, 400)"
-					opacity="0.59"
+					opacity="0.46"
 				></circle>
 			</g>
 			<g class="spin">
@@ -187,7 +187,7 @@
 					stroke-dasharray="51 52"
 					stroke-dashoffset="25"
 					transform="rotate(163, 400, 400)"
-					opacity="0.64"
+					opacity="0.41"
 				></circle>
 			</g>
 			<g class="spin">
@@ -199,7 +199,7 @@
 					stroke-dasharray="25 31"
 					stroke-dashoffset="25"
 					transform="rotate(112, 400, 400)"
-					opacity="0.68"
+					opacity="0.37"
 				></circle>
 			</g>
 			<g class="spin">
@@ -211,7 +211,7 @@
 					stroke-dasharray="12 31"
 					stroke-dashoffset="25"
 					transform="rotate(3, 400, 400)"
-					opacity="0.73"
+					opacity="0.32"
 				></circle>
 			</g>
 			<g class="spin">
@@ -223,7 +223,7 @@
 					stroke-dasharray="42 19"
 					stroke-dashoffset="25"
 					transform="rotate(263, 400, 400)"
-					opacity="0.77"
+					opacity="0.28"
 				></circle>
 			</g>
 			<g class="spin">
@@ -235,7 +235,7 @@
 					stroke-dasharray="35 19"
 					stroke-dashoffset="25"
 					transform="rotate(155, 400, 400)"
-					opacity="0.82"
+					opacity="0.23"
 				></circle>
 			</g>
 			<g class="spin">
@@ -247,7 +247,7 @@
 					stroke-dasharray="20 43"
 					stroke-dashoffset="25"
 					transform="rotate(304, 400, 400)"
-					opacity="0.86"
+					opacity="0.19"
 				></circle>
 			</g>
 			<g class="spin">
@@ -259,7 +259,7 @@
 					stroke-dasharray="41 18"
 					stroke-dashoffset="25"
 					transform="rotate(313, 400, 400)"
-					opacity="0.91"
+					opacity="0.14"
 				></circle>
 			</g>
 			<g class="spin">
@@ -271,7 +271,7 @@
 					stroke-dasharray="17 22"
 					stroke-dashoffset="25"
 					transform="rotate(213, 400, 400)"
-					opacity="0.95"
+					opacity="0.10"
 				></circle>
 			</g>
 			<g class="spin">
@@ -283,7 +283,7 @@
 					stroke-dasharray="28 38"
 					stroke-dashoffset="25"
 					transform="rotate(14, 400, 400)"
-					opacity="1.00"
+					opacity="0.05"
 				></circle>
 			</g>
 		</g>
@@ -316,6 +316,7 @@ g.spin:nth-child(3n) {
 }
 g.spin:nth-child(5n) {
 	animation-duration: 30s;
+	animation-direction: reverse;
 }
 g.spin:nth-child(7n) {
 	animation-duration: 50s;

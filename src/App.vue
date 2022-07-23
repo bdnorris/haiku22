@@ -141,6 +141,12 @@ body {
 	bottom: 0;
 	right: 0;
 	z-index: 2;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 button {
 	background-color: transparent;
