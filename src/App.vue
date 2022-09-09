@@ -6,6 +6,7 @@ import Vortex from './components/Vortex.vue';
 
 export default {
     setup() {
+        let vortexPaused = ref(true);
         let apiKey = import.meta.env.VITE_SHEETS_KEY;
         let lines = ref([]);
         const getLines = async function () {
@@ -76,6 +77,10 @@ export default {
             seedFiveFirst.value++;
             seedFiveSecond.value++;
             seedSeven.value++;
+            vortexPaused.value = false;
+            setTimeout(() => {
+                vortexPaused.value = true;
+            }, 1000);
         };
         return {
             lines,
@@ -84,6 +89,7 @@ export default {
             randomSeven,
             updateLine,
             updateAll,
+            vortexPaused,
         };
     },
     components: { Vortex }
@@ -91,7 +97,7 @@ export default {
 </script>
 
 <template>
-	<Vortex />
+	<Vortex :paused="vortexPaused" />
 	<div v-if="lines" class="lines">
 		<p>
 			<button v-if="randomFiveFirst" @click="updateLine(5, 0)" type="done">

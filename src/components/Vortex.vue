@@ -22,7 +22,7 @@
 			</linearGradient>
 		</defs>
 		<g stroke="url(#vvvortex-grad)" fill="none" stroke-linecap="round">
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="363"
 					cx="400"
@@ -34,7 +34,7 @@
 					opacity="1"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="346.5"
 					cx="400"
@@ -46,7 +46,7 @@
 					opacity="0.95"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="330"
 					cx="400"
@@ -58,7 +58,7 @@
 					opacity="0.91"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="313.5"
 					cx="400"
@@ -70,7 +70,7 @@
 					opacity="0.86"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="297"
 					cx="400"
@@ -82,7 +82,7 @@
 					opacity="0.82"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="280.5"
 					cx="400"
@@ -94,7 +94,7 @@
 					opacity="0.77"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="264"
 					cx="400"
@@ -106,7 +106,7 @@
 					opacity="0.73"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="247.5"
 					cx="400"
@@ -118,7 +118,7 @@
 					opacity="0.68"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="231"
 					cx="400"
@@ -130,7 +130,7 @@
 					opacity="0.64"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="214.5"
 					cx="400"
@@ -142,7 +142,7 @@
 					opacity="0.59"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="198"
 					cx="400"
@@ -154,7 +154,7 @@
 					opacity="0.55"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="181.5"
 					cx="400"
@@ -166,7 +166,7 @@
 					opacity="0.50"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="165"
 					cx="400"
@@ -178,7 +178,7 @@
 					opacity="0.46"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="148.5"
 					cx="400"
@@ -190,7 +190,7 @@
 					opacity="0.41"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="132"
 					cx="400"
@@ -202,7 +202,7 @@
 					opacity="0.37"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="115.5"
 					cx="400"
@@ -214,7 +214,7 @@
 					opacity="0.32"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="99"
 					cx="400"
@@ -226,7 +226,7 @@
 					opacity="0.28"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="82.5"
 					cx="400"
@@ -238,7 +238,7 @@
 					opacity="0.23"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="66"
 					cx="400"
@@ -250,7 +250,7 @@
 					opacity="0.19"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="49.5"
 					cx="400"
@@ -262,7 +262,7 @@
 					opacity="0.14"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="33"
 					cx="400"
@@ -274,7 +274,7 @@
 					opacity="0.10"
 				></circle>
 			</g>
-			<g class="spin">
+			<g :class="{ spin: true, paused: localPaused }">
 				<circle
 					r="16.5"
 					cx="400"
@@ -289,6 +289,32 @@
 		</g>
 	</svg>
 </template>
+
+<script>
+import { computed, ref, watch } from 'vue';
+
+export default ({
+	props: {
+		paused: {
+			type: Boolean,
+			default: true
+		}
+	},
+	setup(props) {
+		const localPaused = ref(true)
+    watch(() => props.paused, (currentValue, oldValue) => {
+			console.log('thing', props.paused)
+			localPaused.value = props.paused
+    console.log('localPaused', localPaused.value);
+    });
+		return {
+			paused: props.paused,
+			localPaused: localPaused
+		}
+	},
+})
+</script>
+
 
 <style>
 .vortex {
@@ -308,6 +334,9 @@ g.spin {
 	animation-duration: 60s;
 	transform-origin: center center;
 }
+g.spin.paused {
+	animation-play-state: paused;
+}
 g.spin:nth-child(2n) {
 	animation-direction: reverse;
 }
@@ -323,12 +352,14 @@ g.spin:nth-child(7n) {
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    } 50% {
-        transform: rotate(540deg);
-    } 100% {
-        transform: rotate(1080deg);
-    }
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(540deg);
+	}
+	100% {
+		transform: rotate(1080deg);
+	}
 }
 </style>
